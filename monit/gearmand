@@ -1,0 +1,4 @@
+check process gearmand with pidfile "/tmp/gearmand.pid"
+    start "/usr/local/sbin/gearmand --pid-file /tmp/gearmand.pid --log-file /tmp/gearmand.log --verbose DEBUG"
+    as uid apache gid apache
+    stop "/usr/bin/pkill --full gearmand"

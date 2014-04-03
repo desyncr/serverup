@@ -1,0 +1,16 @@
+#!/bin/bash
+CRONS='base.delayed appointment.appointment_update_status user.user_reminder'
+DELAYED=5
+COMMAND='cron execute '
+APP='php public/index.php '
+
+while :; do
+    echo running crons
+
+    for cron in $CRONS; do
+        $APP $COMMAND $cron &>> /tmp/cron.${cron}.log
+    done
+
+    echo sleeping $DELAYED seconds
+    sleep $DELAYED
+done

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+export PGPASSWORD=
+export PGUSER=
+export DBNAME=
+
+# Kill all open sessions
+#sudo /etc/init.d/postgresql restart
+sudo -u postgres /usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l /tmp/logfile start
+
+# Re create DB
+sudo sudo -u postgres /usr/local/pgsql/bin/psql -a -c "DROP DATABASE $DBNAME"
+sudo sudo -u postgres /usr/local/pgsql/bin/psql -a -c "CREATE DATABASE $DBNAME"
+
+# Import all the shit
+/usr/local/pgsql/bin/psql -d $DBNAME -a -f ./dump.sql 2> import_error.log

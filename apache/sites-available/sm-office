@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName office.saludmovil.dev
+
+    DocumentRoot /var/www/sm
+    <Directory />
+        Options FollowSymLinks
+        AllowOverride All
+    </Directory>
+    <Directory /var/www/sm>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/sm-office.error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    LogLevel debug
+
+    CustomLog ${APACHE_LOG_DIR}/sm-office.access.log combined
+</VirtualHost>

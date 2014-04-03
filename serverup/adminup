@@ -1,0 +1,13 @@
+#!/bin/bash
+PORT=8082
+[[ ! -z $1 ]] && PORT=$1
+
+PHP=$(which php)
+[[ ! -z $2 ]] && PHP=$2
+
+echo launching php built in server on $PORT
+
+cd public
+$PHP -S 127.0.0.1:$PORT &>> /tmp/sm-admin.log &
+
+ps aux | grep 'php -S'

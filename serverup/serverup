@@ -1,0 +1,25 @@
+#!/bin/bash
+
+echo restarting monit
+service monit restart
+
+echo restarting apache
+service apache2 restart
+
+echo restarting postgresql
+service postgresql restart
+
+echo launching gearmand
+#/usr/local/sbin/gearmand --pid-file /usr/local/var/gearmand.pid --queue-type=postgres --libpq-conninfo='host=127.0.0.1 dbname=saludmovil user=smdev password=8582qV8ia6n43TY' --libpq-table=queue --verbose=DEBUG
+pkill --full gearmand
+/usr/local/sbin/gearmand --pid-file /usr/local/var/gearmand.pid --log-file=/usr/local/var/log/gearmand.log --verbose=DEBUG
+
+# Kill workers
+echo restarting workers
+pkill --full 'gearman worker'
+
+#echo 'Launching sendmail'
+#service sendmail restart
+
+#echo Launching zmq daemon
+#php public/index.php zmq daemon execute &>> daemons.log &

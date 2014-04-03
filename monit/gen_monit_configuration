@@ -1,0 +1,93 @@
+#!/bin/bash
+# This script creates a monit-compatible configuration file to start and monitor Gearman workers.
+#
+# options are:
+# [W]orkers -- List of workers IDs
+# [p]hp     -- Full path to the PHP binary
+# [l]aunch  -- Command to start the workers
+# [w]ebroot -- Full path where the web application resides
+# [k]ill    -- Kill command to stop the workers
+# [u]       -- UID to run as
+# [g]       -- GID to run as
+#
+# pre[f]ix  -- prefix name for general Gearman daemons IDs (used for PID names and mostly internally)
+# [j]oin    -- join string to format IDs
+#
+# Example usage:
+#   gen_monit_configuration  -W 'registration.email.worker invitation.email.worker' \
+#                            -p /usr/bin/php \
+#                            -l 'gearman worker execute' \
+#                            -w /var/www/index.php \
+#                            -k '/usr/bin/pkill --full' \
+#                            -f gearman.worker \
+#                            -u www-data \
+#                            -g www-data \
+#                            -j '.'
+workers=
+php=$(which php)
+launch='gearman worker execute'
+webroot=/var/www/sm/public/index.php
+kill='/usr/bin/pkill --full'
+gid=apache
+uid=apache
+
+prefix=gearman.worker
+join='.'
+
+while getopts W:p:l:w:k:L:f:j:u:g:h opt; do
+    case ${opt} in
+        W)
+            workers=${OPTARG}
+        ;;
+        p)
+            php=${OPTARG}
+            [[ ! -e "$php" ]] && echo 'PHP binary not found' && exit 1;
+        ;;
+        l)
+            launch=${OPTARG}
+        ;;
+        w)
+            webroot=${OPTARG}
+            [[ ! -e "$webroot" ]] && echo 'Webroot path not found' && exit 2;
+        ;;
+        k)
+            kill=${OPTARG}
+        ;;
+        f)
+            prefix=${OPTARG}
+        ;;
+        j)
+            join=${OPTARG}
+        ;;
+        u)
+            uid=${OPTARG}
+        ;;
+        g)
+            gid=${OPTARG}
+        ;;
+        h)
+            # too lazy
+            head -n 28 $0
+            exit 0
+        ;;
+    esac
+done;
+
+launcher="${php} ${webroot} ${launch}"
+
+cat <<PART
+# Script generated $(date) by $USER($UID)
+
+PART
+for worker in $workers; do
+    fullname=$prefix$join$worker
+    pid=${fullname}.pid
+
+    cat <<PART
+check process ${fullname} matching "${worker}"
+    start program "${launcher} ${worker}"
+    as uid ${uid} gid ${gid}
+    stop program "${kill} ${worker}"
+
+PART
+done

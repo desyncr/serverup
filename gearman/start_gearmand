@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo /usr/local/sbin/gearmand --pid-file /tmp/gearmand.pid --log-file /tmp/gearmand.log --verbose DEBUG

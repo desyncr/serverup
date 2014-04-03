@@ -1,0 +1,102 @@
+# Script generated Tue Mar 18 23:00:10 ART 2014 by dario(1001)
+
+check process gearman.worker.user.user_registration matching "user.user_registration"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute user.user_registration"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full user.user_registration"
+
+check process gearman.worker.user.user_invitation matching "user.user_invitation"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute user.user_invitation"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full user.user_invitation"
+
+check process gearman.worker.user.user_patient_invitation matching "user.user_patient_invitation"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute user.user_patient_invitation"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full user.user_patient_invitation"
+
+check process gearman.worker.user.user_forgot_password matching "user.user_forgot_password"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute user.user_forgot_password"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full user.user_forgot_password"
+
+check process gearman.worker.library.library_document_share matching "library.library_document_share"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute library.library_document_share"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full library.library_document_share"
+
+check process gearman.worker.appointment.appointment matching "appointment.appointment"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute appointment.appointment"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full appointment.appointment"
+
+check process gearman.worker.appointment.appointment_reminder matching "appointment.appointment_reminder"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute appointment.appointment_reminder"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full appointment.appointment_reminder"
+
+check process gearman.worker.appointment.appointment_sms_reminder matching "appointment.appointment_sms_reminder"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute appointment.appointment_sms_reminder"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full appointment.appointment_sms_reminder"
+
+check process gearman.worker.appointment.appointment_status_change matching "appointment.appointment_status_change"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute appointment.appointment_status_change"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full appointment.appointment_status_change"
+
+check process gearman.worker.appointment.appointment_visit_reminder matching "appointment.appointment_visit_reminder"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute appointment.appointment_visit_reminder"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full appointment.appointment_visit_reminder"
+
+check process gearman.worker.survey.survey_practice_reminder matching "survey.survey_practice_reminder"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute survey.survey_practice_reminder"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full survey.survey_practice_reminder"
+
+check process gearman.worker.survey.survey_derivation_reminder matching "survey.survey_derivation_reminder"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute survey.survey_derivation_reminder"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full survey.survey_derivation_reminder"
+
+check process gearman.worker.patient.patient_visit_next_visit_reminder matching "patient.patient_visit_next_visit_reminder"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute patient.patient_visit_next_visit_reminder"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full patient.patient_visit_next_visit_reminder"
+
+check process gearman.worker.patient.patient_visit_next_visit_sms_reminder matching "patient.patient_visit_next_visit_sms_reminder"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute patient.patient_visit_next_visit_sms_reminder"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full patient.patient_visit_next_visit_sms_reminder"
+
+check process gearman.worker.ehr.ehr_info matching "ehr.ehr_info"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute ehr.ehr_info"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full ehr.ehr_info"
+
+check process gearman.worker.ehr.ehr_document matching "ehr.ehr_document"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute ehr.ehr_document"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full ehr.ehr_document"
+
+check process gearman.worker.patient.patient_visit_medicament_made matching "patient.patient_visit_medicament_made"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute patient.patient_visit_medicament_made"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full patient.patient_visit_medicament_made"
+
+check process gearman.worker.user.user_reminder matching "user.user_reminder"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute user.user_reminder"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full user.user_reminder"
+
+check process gearman.worker.user.user_appointment_request matching "user.user_appointment_request"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute user.user_appointment_request"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full user.user_appointment_request"
+
+check process gearman.worker.user.user_password_change matching "user.user_password_change"
+    start program "/usr/local/bin/php /var/www/sm/public/index.php gearman worker execute user.user_password_change"
+    as uid apache gid apache
+    stop program "/usr/bin/pkill --full user.user_password_change"
+

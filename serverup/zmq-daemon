@@ -1,0 +1,2 @@
+#!/bin/bash
+php public/index.php zmq daemon execute &>> /tmp/zmq.daemon.log &

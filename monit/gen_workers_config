@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# all workers
+workers='user.user_registration
+user.user_invitation
+user.user_patient_invitation
+user.user_forgot_password
+library.library_document_share
+appointment.appointment
+appointment.appointment_reminder
+appointment.appointment_sms_reminder
+appointment.appointment_status_change
+appointment.appointment_visit_reminder
+survey.survey_practice_reminder
+survey.survey_derivation_reminder
+patient.patient_visit_next_visit_reminder
+patient.patient_visit_next_visit_sms_reminder
+ehr.ehr_share_info
+ehr.ehr_document
+patient.patient_visit_medicament_made
+user.user_reminder
+user.user_appointment_request
+user.user_password_change'
+
+# Application web root (index.php)
+webroot=/var/www/sm/index.php
+
+# PHP binary path (full path) ie: /usr/local/bin/php
+php=$(which php)
+
+# User for workers processes to run as
+#user=apache
+user=www-data
+
+# Group for workers processes to run as
+#group=apache
+group=www-data
+
+# generate new monit configuration
+./gen_monit_configuration -w "${webroot}" \
+                          -p "${php}" \
+                          -W "${workers}" \
+                          -u "${user}" \
+                          -g "${group}"
+

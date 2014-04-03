@@ -1,0 +1,2 @@
+# hosts file usually located at /etc/hosts or C:\Windows\system32\drivers\etc
+127.0.0.1   office.saludmovil.dev patient.saludmovil.dev admin.saludmovil.dev

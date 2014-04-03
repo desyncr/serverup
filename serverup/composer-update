@@ -1,0 +1,12 @@
+#!/bin/bash
+CORE=$HOME/Workspace/core
+ROOT=$HOME/Workspace/sm
+
+if [ ! -d $ROOT/vendor/sm/core ]; then
+    rm $ROOT/vendor/sm/core
+fi
+
+composer update -vvv --prefer-dist
+
+rm -rf $ROOT/vendor/sm/core
+ln -s $CORE $ROOT/vendor/sm/core

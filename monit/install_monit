@@ -1,0 +1,12 @@
+#!/bin/bash
+
+wget http://mmonit.com/monit/dist/monit-5.7.tar.gz
+tar xf monit-5.7.tar.gz
+
+cd monit-5.7
+
+./configure --without-ssl --without-pam
+make
+sudo make install
+
+cd -

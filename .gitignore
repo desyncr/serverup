@@ -1,3 +1,4 @@
 veewee
 *.local
 satis/build/
+*.box

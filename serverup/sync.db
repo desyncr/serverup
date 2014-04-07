@@ -1,0 +1,17 @@
+#!/bin/bash
+user=
+password=
+cookie=
+database=
+
+curl http://pgsql.braintive.com/dbexport.php \
+    -o /tmp/dump.tar.gz \
+    --user $user:$password \
+    --cookie PPA_ID=$cookie \
+    -d 'd_format=copy&what=structureanddata&sd_format=sql&output=gzipped&action=export&subject=database&server=127.0.0.1:5432:allow&database='$database
+    > /tmp/dump.tar.gz
+
+tar xv /tmp/dump.tar.gz /tmp/dump.sql
+
+./importdb /tmp/dump.sql
+

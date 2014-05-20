@@ -41,7 +41,7 @@ while getopts W:p:l:w:k:L:f:j:u:g:h opt; do
         ;;
         p)
             php=${OPTARG}
-            [[ ! -e "$php" ]] && echo 'PHP binary not found' && exit 1;
+            #[[ ! -e "$php" ]] && echo 'PHP binary not found' && exit 1;
         ;;
         l)
             launch=${OPTARG}

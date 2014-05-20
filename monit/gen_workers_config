@@ -5,6 +5,9 @@ workers='user.user_registration
 user.user_invitation
 user.user_patient_invitation
 user.user_forgot_password
+user.user_reminder
+user.user_appointment_request
+user.user_password_change
 library.library_document_share
 appointment.appointment
 appointment.appointment_reminder
@@ -15,26 +18,27 @@ survey.survey_practice_reminder
 survey.survey_derivation_reminder
 patient.patient_visit_next_visit_reminder
 patient.patient_visit_next_visit_sms_reminder
+patient.patient_visit_medicament_made
+patient.patient_new_conversation
 ehr.ehr_share_info
 ehr.ehr_document
-patient.patient_visit_medicament_made
-user.user_reminder
-user.user_appointment_request
-user.user_password_change'
+office.office_creation
+staff.staff_new_conversation'
 
 # Application web root (index.php)
-webroot=/var/www/sm/index.php
+webroot=/var/www/sm/production/current/public/index.php
 
 # PHP binary path (full path) ie: /usr/local/bin/php
-php=$(which php)
+#php=$(which php)
+php=/usr/bin/php
 
 # User for workers processes to run as
-#user=apache
-user=www-data
+user=apache
+#user=www-data
 
 # Group for workers processes to run as
-#group=apache
-group=www-data
+group=apache
+#group=www-data
 
 # generate new monit configuration
 ./gen_monit_configuration -w "${webroot}" \
